@@ -1,47 +1,367 @@
+<!--
+  Beginner-friendly charity: water landing page.
+  The bottom panel (footer-section) is centered and mobile-friendly.
+  Contact info and links are included in the footer.
+  Comments included for learning.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>charity: water</title>
+  <!-- Load Proxima Nova from Adobe Fonts or fallback -->
+  <link rel="stylesheet" href="https://use.typekit.net/xyz123.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      margin: 0;
+      color: #333;
+    }
+
+    /* Header only shows logo, centered */
+    header {
+      background: #fff8ef;
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 2px solid #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cw-logo {
+      height: 2rem;
+      vertical-align: middle;
+    }
+
+    .hero img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .content-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      justify-content: center;
+      margin: 0 auto;
+      max-width: 1100px;
+    }
+
+    .content-text, .content-message, .content-image {
+      flex: 1;
+      min-width: 280px;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+    }
+
+    .content-text {
+      background: linear-gradient(90deg, rgb(119, 168, 187) 0%, rgb(0, 51, 102) 100%);
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: left;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(46, 157, 247, 0.08);
+      margin: 0.5rem;
+      min-height: 180px;
+      /* Simple fade-in animation for text */
+      animation: textFadeUp 1.2s ease;
+    }
+
+    @keyframes textFadeUp {
+      0% { opacity: 0; transform: translateY(30px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+
+    .content-text span {
+      color: #f1c40f;
+    }
+
+    .content-message {
+      background: #fff8ef;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      border-radius: 8px;
+      margin: 0.5rem;
+      box-shadow: 0 2px 8px rgba(46, 157, 247, 0.08);
+    }
+
+    .content-message p {
+      max-width: 420px;
+      margin-bottom: 2rem;
+    }
+
+    .content-message button {
+      background: #f1c40f;
+      border: none;
+      padding: 1rem 2.2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      color: #0d2c54;
+      transition: background 0.3s, transform 0.2s;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+    }
+
+    .water-emoji {
+      opacity: 0;
+      margin-left: 0.5em;
+      transition: opacity 0.6s;
+    }
+    .content-message button:hover .water-emoji {
+      opacity: 1;
+    }
+
+    .content-message button:hover {
+      background: #e0b90f;
+      transform: scale(1.07);
+    }
+
+    .content-image img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+      animation: fadeIn 1.2s ease;
+      transition: transform 0.3s;
+    }
+
+    .content-image img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 16px rgba(46, 157, 247, 0.15);
+    }
+
+    /* Centered bottom panel */
+    .footer-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      padding: 2rem 1rem 1rem 1rem;
+      border-top: 2px solid #e0e0e0;
+      gap: 2rem;
+      margin: 2rem auto 0 auto;
+      max-width: 700px; /* Center and limit width */
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(46, 157, 247, 0.10);
+    }
+
+    .footer-image {
+      flex: 1;
+      min-width: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      max-width: 250px;
+    }
+
+    .footer-image img {
+      width: 100%;
+      max-width: 220px;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+      animation: fadeIn 1.2s ease;
+      transition: transform 0.3s;
+    }
+
+    .footer-image img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 16px rgba(46, 157, 247, 0.15);
+    }
+
+    .impact-section {
+      flex: 2;
+      min-width: 180px;
+      padding: 1rem 1rem;
+      background: #fff8ef;
+      border-radius: 8px;
+      text-align: left;
+      max-width: 350px;
+      box-shadow: 0 2px 8px rgba(46, 157, 247, 0.08);
+    }
+
+    .impact-section h2 {
+      color: #0d2c54;
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .impact-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+
+    .impact-list li {
+      margin-bottom: 0.7rem;
+      font-size: 1rem;
+    }
+
+    .impact-countries {
+      font-size: 0.95rem;
+      color: #2e9df7;
+      margin-top: 1rem;
+    }
+
+    /* Fade-in animation for images */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98);}
+      to { opacity: 1; transform: scale(1);}
+    }
+
+    footer {
+      background: #0d2c54;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem 1rem 1rem;
+      font-size: 1rem;
+      margin-top: 0;
+    }
+
+    .footer-links {
+      margin: 1rem 0 0 0;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
+      color: #FFC907;
+      text-decoration: none;
+      margin: 0 0.7rem;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #2E9DF7;
+    }
+
+    /* Responsive styles for mobile */
+    @media (max-width: 900px) {
+      .content-section {
+        flex-direction: column;
+        max-width: 100%;
+      }
+      .content-text,
+      .content-message,
+      .content-image {
+        min-width: 0;
+        width: 100%;
+        padding: 1.2rem 0.5rem;
+        margin: 0.5rem 0;
+      }
+      .content-text {
+        font-size: 1.3rem;
+        text-align: center;
+        min-height: 120px;
+      }
+      .footer-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0.5rem;
+        gap: 1rem;
+        margin-left: 0;
+        max-width: 100%;
+      }
+      .impact-section {
+        margin-left: 0;
+        margin-top: 1rem;
+        padding: 1rem;
+        max-width: 100%;
+      }
+      .footer-image img {
+        max-width: 100%;
+        max-height: 140px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
+  <!-- Header section with logo only -->
+  <header>
+    <img src="img/cw_logo-2.png" alt="charity: water logo" class="cw-logo">
+  </header>
 
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
+  <!-- Hero image section -->
+  <section class="hero">
+    <img src="img/Working.jpg" alt="Hero image of people working on a water project">
+  </section>
 
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
-        </div>
-    </section>
+  <!-- Main content section split into three columns -->
+  <section class="content-section">
+    <!-- Left column: Text -->
+    <div class="content-text">
+      <p>Clean<br>water<br>changes<br><span>everything</span></p>
+    </div>
 
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
+    <!-- Middle column: Charity: water info and donation button -->
+    <div class="content-message">
+      <p>
+        Nearly 1 in 10 people lack access to safe water — but together, we're changing that.<br>
+        With charity: water's 100% model, every dollar you give goes directly to funding clean water projects, already transforming over 20 million lives in 29 countries — and we're just getting started.
+      </p>
+      <button>
+        Give
+        <span class="water-emoji">💧</span>
+      </button>
+    </div>
+
+    <!-- Right column: Drinking water image at original size -->
+    <div class="content-image">
+      <img src="img/Drinking_water.jpg" alt="Child drinking clean water">
+    </div>
+  </section>
+
+  <!-- Centered bottom panel with image and impact stats -->
+  <div class="footer-section">
+    <div class="footer-image">
+      <img src="img/Family.jpg" alt="Family who benefits from clean water">
+    </div>
+    <div class="impact-section">
+      <h2>charity: water Impact</h2>
+      <ul class="impact-list">
+        <li><strong>Projects Funded:</strong> 111,000+</li>
+        <li><strong>People Served:</strong> 20,000,000+</li>
+        <li><strong>Countries:</strong> 29</li>
+        <li><strong>100% Model:</strong> Every dollar goes to water projects</li>
+      </ul>
+      <div class="impact-countries">
+        <strong>Current Operations:</strong><br>
+        Ethiopia, Bangladesh, Malawi, Nepal, Cambodia, Uganda, Rwanda, and more.
+      </div>
+    </div>
+  </div>
+
+  <!-- Standard footer with contact info and links -->
+  <footer>
+    <p>© charity: water — Bringing clean water to people in need</p>
+    <div class="footer-links">
+      <!-- Contact info and links for beginners -->
+      <a href="mailto:info@charitywater.org">Contact Us</a>
+      <a href="https://www.charitywater.org/" target="_blank">Visit charity: water</a>
+      <a href="https://www.charitywater.org/donate" target="_blank">Donate</a>
+    </div>
+  </footer>
 </body>
 </html>
